@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+      	body {
+      		background-color: lime;
+      	}
+      	#ktav {
+        	resize:none;
+        	width:99%;
+        	height:150px;
+        	text-align:right;
+      	}
+      	#output {
+        	resize:none;
+        	width:70%;
+        	height:40px;
+        	float:left;
+      	}
+      	#run {
+        	width:28.25%;
+        	height:45px;
+        	font-size:30px;
+      	}
+      	#keyboard {
+        	background-color: blue;
+          	border-width:10px;
+            padding:10px;
+      	}
+      	#h {
+        	background-color:blue;
+          	padding: 2px;
+          	border-radius: 3px;
+      	}
+      	#header{
+        	text-align:center;
+          	background-color: gold;
+          	color: blue;
+      	}
+        .button{
+          	border-bottom-color:#222222;
+        	border-right-color: #444444;
+          	background-color:   #555555;
+          	border-left-color:  #666666;
+          	border-top-color:   #888888;
+          	border-width: 5px;
+          	border-radius: 3px;
+          	font-size:19px;
+        	color: white;
+          	width: 9%;
+        	height: 50px;
+      	}
+    </style>
+</head>
+<body>
+  	<div id="h">
+      	<h1 id="header" >&#1490&#1502&#1496&#1512&#1497&#1488 Calculator</h1>
+  	</div>
+  	<div id="I_O">
+		<textarea id="ktav"   readonly="true"></textarea>
+  		<textarea id="output" readonly="true" ></textarea>
+      	<button id="run"      onclick="gematria();">&#10004</button>
+  	</div>
+	<div id="keyboard">
+		<!--Row #1-->
+  			<button onclick="typ(9);" class="button">&#1497</button>
+  			<button onclick="typ(8);" class="button">&#1496</button>
+  			<button onclick="typ(7);" class="button">&#1495</button>
+  			<button onclick="typ(6);" class="button">&#1494</button>
+  			<button onclick="typ(5);" class="button">&#1493</button>
+  			<button onclick="typ(4);" class="button">&#1492</button>
+  			<button onclick="typ(3);" class="button">&#1491</button>
+  			<button onclick="typ(2);" class="button">&#1490</button>
+  			<button onclick="typ(1);" class="button">&#1489</button>
+  			<button onclick="typ(0);" class="button">&#1488</button>
+		<!--Row #2-->
+  			<button onclick="typ(20);" class="button">&#1508</button>
+  			<button onclick="typ(18);" class="button">&#1506</button>
+  			<button onclick="typ(17);" class="button">&#1505</button>
+  			<button onclick="typ(15);" class="button">&#1503</button>
+  			<button onclick="typ(16);" class="button">&#1504</button>
+  			<button onclick="typ(13);" class="button">&#1501</button>
+  			<button onclick="typ(14);" class="button">&#1502</button>
+  			<button onclick="typ(12);" class="button">&#1500</button>
+  			<button onclick="typ(10);" class="button">&#1498</button>
+  			<button onclick="typ(11);" class="button">&#1499</button>
+		<!--Row #3-->
+    		<!--(?)=>Just To Fill Up Room-->
+  				<button class="button" style="width:14%; color:#555555;">_</button>
+  			<!--(?)-->
+  			<button onclick="typ(26);" class="button">&#1514</button>
+  			<button onclick="typ(25);" class="button">&#1513</button>
+  			<button onclick="typ(24);" class="button">&#1512</button>
+  			<button onclick="typ(23);" class="button">&#1511</button>
+  			<button onclick="typ(21);" class="button">&#1509</button>
+  			<button onclick="typ(22);" class="button">&#1510</button>
+  			<button onclick="typ(19);" class="button">&#1507</button>
+     		<!--(?)=>Also Just To Fill Up Room-->
+  				<button class="button" style="width:14%; color:#555555;">_</button>
+  			<!--(?)-->
+		<!--Row #4-->
+  			<div style="width:95%;">
+  				<button class="button" 
+                    onclick="clear();" 
+                    style="width:19%;font-size:20px; color:#ff8888; font-weigh:bold;">
+              			Clear
+          		</button>
+  				<button class="button"
+                    onclick="space();"
+                    style="width:60%;"
+                    id="space" >
+              			__
+          		</button>
+  				<button class="button" 
+                    onclick="backspace();"
+                    id="backspace"
+                    style="width:18%;color:#ff6666; font-size:22px;">
+              			&#9003
+          		</button>
+  			</div>
+		</div>
+	<script>
+    function clear () {
+      	if(window.confirm("Are you sure you want to clear the textbox?")) {
+          	document.getElementById('txt').innerHTML = '';
+        }
+    }
+	function backspace () {
+  		let ktav = document.getElementById("ktav").innerHTML;
+
+  		document.getElementById("ktav").innerHTML = ktav.substring(0, ktav.length - 1);
+	}
+	function typ (input) {
+  		var ktav = document.getElementById("ktav").innerHTML;
+
+    	document.getElementById("ktav").innerHTML = ktav + String.fromCharCode(input + 1488);
+	}
+	function space () {
+  		document.getElementById('ktav').innerHTML += ' ';
+	}
+    function gematria () {
+
+      	var ktav = document.getElementById('ktav').innerHTML;
+
+      	var gematria = 0;
+
+  		var letter = function (input) {
+          	return String.fromCharCode( 1488 + input);
+		}
+
+  		ktav.split("").map( function(character) {
+		//א
+      		if (character == letter(0)) {
+          		gematria += 1;
+        	}
+       	//ב
+      		else if (character == letter(1)) {
+          		gematria += 2;
+        	}
+        //ג
+      		else if (character == letter(2)) {
+          		gematria += 3;
+        	}
+        //ד
+      		else if (character == letter(3)) {
+          		gematria += 4;
+        	}
+		//ה
+      		else if (character == letter(4)) {
+          		gematria += 5;
+        	}
+        //ו
+      		else if (character == letter(5)) {
+          		gematria += 6;
+        	}
+        //ז
+      		else if (character == letter(6)) {
+          		gematria += 7;
+        	}
+        //ח
+      		else if (character == letter(7)) {
+          		gematria += 8;
+        	}
+        //ט
+      		else if (character == letter(8)) {
+          		gematria += 9;
+        	}
+        //י
+      		else if (character == letter(9)) {
+          		gematria += 10;
+        	}
+        //כ & ך
+      		else if (character == letter(10) || character == letter(11)) {
+          		gematria += 20;
+        	}
+        //ל
+      		else if (character == letter(12)) {
+          		gematria += 30;
+        	}
+        //מ & ם
+      		else if (character == letter(13) || character == letter(14)) {
+          		gematria += 40;
+        	}
+        //נ & ן
+      		else if (character == letter(15) || character == letter(16)) {
+          		gematria += 50;
+        	}
+        //ס
+      		else if (character == letter(17)) {
+          		gematria += 60;
+        	}
+        //ע
+      		else if (character == letter(18)) {
+        	  	gematria += 70;
+        	}
+        //פ & ף
+      		else if (character == letter(19) || character == letter(20)) {
+        	  	gematria += 80;
+        	}
+        //צ & ץ
+      		else if (character == letter(21) || character == letter(22)) {
+        	  	gematria += 90;
+        	}
+        //ק
+      		else if (character == letter(23)) {
+        	  	gematria += 100;
+        	}
+        //ר
+      		else if (character == letter(24)) {
+        	  	gematria += 200;
+        	}
+        //ש
+      		else if (character == letter(25)) {
+        	  	gematria += 300;
+        	}
+        //ת
+      		else if (character == letter(26)) {
+          		gematria += 400;
+        	}
+    	});
+  		document.getElementById("output").innerHTML = gematria;
+	}
+	</script>
+</body>
+</html>
